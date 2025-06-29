@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>518 K-9 Solutions - Professional Dog Training & K-9 Services</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .shield {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        .shield::after {
+            content: "🐕";
+            font-size: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #e53e3e;
+        }
+
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Mobile Menu */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 0;
+            right: 0;
+            background: #1a1a1a;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .mobile-nav a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 15px 0;
+            border-bottom: 1px solid #333;
+            font-size: 1.1rem;
+        }
+
+        .mobile-nav a:hover {
+            color: #e53e3e;
+        }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://dogtalkdiva.com/wp-content/uploads/2010/04/SunsetTraining-crop-xSM.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: transform 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 50px;
+            color: #2d2d2d;
+        }
+
+        /* About */
+        .about {
+            background: white;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .owner-card {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            border: 3px solid #e53e3e;
+        }
+
+        .owner-card h3 {
+            color: #e53e3e;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .owner-card .title {
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2d2d2d;
+        }
+
+        /* Services */
+        .services {
+            background: #f8f9fa;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-top: 4px solid #e53e3e;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            color: #2d2d2d;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .service-card p {
+            color: #666;
+        }
+
+        /* Training */
+        .training {
+            background: white;
+        }
+
+        .training-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .training-item {
+            text-align: center;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+
+        .training-item:hover {
+            background: #e53e3e;
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        .training-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .training-item h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        /* Contact */
+        .contact {
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info,
+        .contact-form {
+            background: rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 15px;
+        }
+
+        .contact-info h3,
+        .contact-form h3 {
+            color: #e53e3e;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .contact-item span:first-child {
+            margin-right: 15px;
+            color: #e53e3e;
+            font-size: 1.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .mobile-nav.active {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .training-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            .nav-wrapper {
+                padding: 0 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .training-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .service-card,
+            .training-item,
+            .contact-info,
+            .contact-form,
+            .owner-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-wrapper">
+            <div class="logo">
+                <div class="shield"></div>
+                518 K-9 Solutions
+            </div>
+            <nav class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#training">Training</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <button class="menu-btn" id="menuBtn">☰</button>
+        </div>
+        <nav class="mobile-nav" id="mobileNav">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#training">Training</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>518 K-9 Solutions</h1>
+            <p>Professional Dog Training & K-9 Services - Building Better Bonds Between You and Your Canine Companion</p>
+            <a href="#contact" class="btn">Get Started Today</a>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>At 518 K-9 Solutions, we believe that every dog has the potential to be a well-behaved, confident, and happy companion. Our professional training programs are designed to strengthen the bond between you and your dog while addressing behavioral challenges with proven, humane methods.</p>
+                    
+                    <p>We understand that each dog is unique, which is why we create customized training plans tailored to your dog's specific needs, temperament, and your family's lifestyle. Whether you're dealing with basic obedience issues, behavioral problems, or looking to enhance your dog's existing skills, we're here to help.</p>
+
+                    <p>Our commitment extends beyond training sessions. We provide ongoing support and guidance to ensure long-lasting results and a harmonious relationship between you and your four-legged family member.</p>
+                </div>
+                <div>
+                    <div class="owner-card">
+                        <h3>Sai Hawk</h3>
+                        <div class="title">Owner & Lead Trainer</div>
+                        <p>With years of experience in canine behavior and training, Sai brings expertise, patience, and genuine love for dogs to every training session. Certified in multiple training methodologies, Sai is dedicated to helping dogs and their families achieve their training goals.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Basic Obedience Training</h3>
+                    <p>Foundation commands including sit, stay, come, down, and heel. Perfect for puppies and adult dogs learning essential manners and building a strong training foundation.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Behavioral Modification</h3>
+                    <p>Address problematic behaviors such as excessive barking, jumping, leash pulling, aggression, and separation anxiety through proven behavioral modification techniques.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Puppy Training Programs</h3>
+                    <p>Specialized programs for puppies focusing on socialization, house training, bite inhibition, and establishing good habits during critical developmental periods.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Advanced Training</h3>
+                    <p>Take your dog's skills to the next level with advanced commands, off-leash training, and specialized tasks tailored to your specific needs and goals.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Private Training Sessions</h3>
+                    <p>One-on-one training sessions in your home or our facility, providing personalized attention and customized training plans for optimal results.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Group Classes</h3>
+                    <p>Structured group training sessions that provide socialization opportunities while learning essential skills in a controlled, supportive environment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="training" class="training">
+        <div class="container">
+            <h2 class="section-title">Our Training Philosophy</h2>
+            <div class="training-grid">
+                <div class="training-item">
+                    <div class="training-icon">🎯</div>
+                    <h3>Positive Reinforcement</h3>
+                    <p>We use reward-based training methods that build confidence and strengthen the human-dog bond.</p>
+                </div>
+                <div class="training-item">
+                    <div class="training-icon">🧠</div>
+                    <h3>Science-Based Approach</h3>
+                    <p>Our methods are grounded in current canine behavioral science and proven training techniques.</p>
+                </div>
+                <div class="training-item">
+                    <div class="training-icon">❤️</div>
+                    <h3>Humane Methods</h3>
+                    <p>We never use fear, intimidation, or punishment-based techniques in our training programs.</p>
+                </div>
+                <div class="training-item">
+                    <div class="training-icon">👥</div>
+                    <h3>Family-Focused</h3>
+                    <p>We train both dogs and their families to ensure consistent communication and lasting results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <p style="margin-bottom: 30px;">Ready to start your dog's training journey? Contact us today to discuss your needs and schedule a consultation.</p>
+                    
+                    <div class="contact-item">
+                        <span>📞</span>
+                        <span>(518) 555-K9DOG</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>✉️</span>
+                        <span>info@518k9solutions.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>📍</span>
+                        <span>Serving the Capital Region, NY</span>
+                    </div>
+                    <div class="contact-item">
+                        <span>⏰</span>
+                        <span>Mon-Sat: 7AM-7PM | Sun: By Appointment</span>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Send us a Message</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Tell us about your dog and training needs</label>
+                            <textarea id="message" name="message" placeholder="Dog's breed, age, specific behaviors or goals..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 518 K-9 Solutions. All rights reserved. | Professional Dog Training & K-9 Services</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileNav = document.getElementById('mobileNav');
+
+        menuBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking links
+        const mobileLinks = mobileNav.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will contact you soon to discuss your training needs.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
